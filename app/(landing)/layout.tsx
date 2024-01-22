@@ -7,10 +7,10 @@ export default function LandingLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <div className="h-full bg-slate-100">
+        <main className="bg-slate-100 h-screen overflow-hidden">
             <Navbar />
-            <main className="pt-40 pb-20 bg-slate-100">{children}</main>
+            <div className="text-center">{children}</div>
             <Footer />
-        </div>
+        </main>
     );
 }
