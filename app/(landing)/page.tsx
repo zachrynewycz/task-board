@@ -30,7 +30,7 @@ function LandingPage() {
                 </div>
             </div>
 
-            <p className={cn("max-w-2xl mx-auto text-sm md:text-xl my-5 text-neutral-500", poppins.className)}>
+            <p className={cn("max-w-2xl mx-auto text-sm md:text-xl my-5 text-neutral-400", poppins.className)}>
                 Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the
                 way your team works is unique
             </p>
