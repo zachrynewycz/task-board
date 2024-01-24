@@ -1,9 +1,9 @@
-import Info from "./_components/info";
+import BoardList from "./_components/board-list";
 
 function DashboardPage() {
     return (
-        <div>
-            <Info />
+        <div className="w-full">
+            <BoardList />
         </div>
     );
 }

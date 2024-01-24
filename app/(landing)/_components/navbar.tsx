@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function Navbar() {
     return (
-        <nav className="bg-white py-3 shadow-sm px-10 lg:px-0">
+        <nav className="bg-white py-3 shadow-sm px-10 2xl:px-0">
             <div className="flex justify-between items-center md:mx-auto mx-0 max-w-screen-2xl">
                 <Logo />
 
