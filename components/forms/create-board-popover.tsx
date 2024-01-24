@@ -1,14 +1,15 @@
 "use client";
-
 import FormInput from "./form-input";
 import FormSubmit from "./form-submit";
 import FormImagePicker from "./form-image-picker";
 
-import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { PopoverClose } from "@radix-ui/react-popover";
 
 import { X } from "lucide-react";
+
+import { useAction } from "@/hooks/use-action";
+import { createBoard } from "@/actions/create-board";
 
 interface FormPopoverProps {
     children: React.ReactNode;
@@ -16,10 +17,15 @@ interface FormPopoverProps {
 }
 
 const CreateBoardFormPopover = ({ children, side }: FormPopoverProps) => {
+    const { execute } = useAction(createBoard, {
+        onSuccess: () => {},
+        onError: (error) => {},
+    });
+
     const onSubmit = (formData: FormData) => {
         const title = formData.get("title") as string;
-        const image = formData.get("image") as string;
-        console.log(image, title);
+        const image = formData.get("selected-image") as string;
+        execute({ image, title });
     };
 
     return (
@@ -30,13 +36,11 @@ const CreateBoardFormPopover = ({ children, side }: FormPopoverProps) => {
                 <h1 className="text-lg text-neutral-600 text-center">Create board</h1>
 
                 <PopoverClose>
-                    <Button variant="ghost" className="absolute right-0 top-3">
-                        <X size={20} />
-                    </Button>
+                    <X className="absolute top-5 right-5" size={20} />
                 </PopoverClose>
 
                 <form action={onSubmit}>
-                    <FormImagePicker id="image" />
+                    <FormImagePicker />
                     <FormInput id="title" title="Board title" />
                     <FormSubmit className="mt-5 w-full">Create</FormSubmit>
                 </form>

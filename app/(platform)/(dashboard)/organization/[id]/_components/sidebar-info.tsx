@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useOrganization } from "@clerk/nextjs";
 import Image from "next/image";
 
-const Info = () => {
+const SidebarInfo = () => {
     const { organization, isLoaded } = useOrganization();
 
     if (!isLoaded) {
@@ -33,4 +33,4 @@ const Info = () => {
     );
 };
 
-export default Info;
+export default SidebarInfo;

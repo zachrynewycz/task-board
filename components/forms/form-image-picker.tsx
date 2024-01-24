@@ -9,7 +9,7 @@ import { unsplash } from "@/lib/unsplash";
 import { cn } from "@/utils/utils";
 import { Check } from "lucide-react";
 
-const FormImagePicker = ({ id }: { id: string }) => {
+const FormImagePicker = () => {
     const [images, setImages] = useState<any>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [selectedImageId, setSelectedImageId] = useState<string>("");
@@ -59,8 +59,9 @@ const FormImagePicker = ({ id }: { id: string }) => {
                         </div>
                     )}
                     <input
-                        id={id}
-                        name={id}
+                        id={selectedImageId === image.id ? "selected-image" : `image-${image.id}`}
+                        name={selectedImageId === image.id ? "selected-image" : `image-${image.id}`}
+                        type="text"
                         className="hidden"
                         readOnly
                         value={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.links.html}|${image.user.name}`}

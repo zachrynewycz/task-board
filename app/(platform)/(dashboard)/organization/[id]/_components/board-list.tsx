@@ -1,5 +1,4 @@
 import CreateBoardFormPopover from "@/components/forms/create-board-popover";
-import { db } from "@/lib/db";
 import { User } from "lucide-react";
 
 const BoardList = async () => {
