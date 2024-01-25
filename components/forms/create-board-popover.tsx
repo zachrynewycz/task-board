@@ -16,7 +16,7 @@ interface FormPopoverProps {
     side: "bottom" | "left" | "top" | "right";
 }
 
-const CreateBoardFormPopover = ({ children, side }: FormPopoverProps) => {
+const CreateBoardPopover = ({ children, side }: FormPopoverProps) => {
     const { execute } = useAction(createBoard, {
         onSuccess: () => {},
         onError: (error) => {},
@@ -49,4 +49,4 @@ const CreateBoardFormPopover = ({ children, side }: FormPopoverProps) => {
     );
 };
 
-export default CreateBoardFormPopover;
+export default CreateBoardPopover;

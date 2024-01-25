@@ -30,7 +30,7 @@ const FormImagePicker = () => {
                 }
                 setImages(result.response);
             } catch (error) {
-                console.log(error);
+                console.error(error);
             } finally {
                 setIsLoading(false);
             }

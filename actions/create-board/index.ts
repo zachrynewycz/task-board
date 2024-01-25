@@ -2,6 +2,7 @@
 
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
+import { revalidatePath } from "next/cache";
 
 export const createBoard = async (data: any): Promise<any> => {
     const { userId, orgId } = auth();
@@ -31,6 +32,8 @@ export const createBoard = async (data: any): Promise<any> => {
                 imageUsername,
             },
         });
+
+        revalidatePath(`/organizations/${orgId}`);
     } catch (error) {
         console.error(error);
     }

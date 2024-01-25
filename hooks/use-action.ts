@@ -8,7 +8,7 @@ interface UseActionOptions<TOutput> {
     onComplete?: () => void;
 }
 
-export const useAction = <TInput, TOutput>(action: Action<TInput, TOutput>, options: UseActionOptions<TOutput>) => {
+export const useAction = <TInput, TOutput>(action: Action<TInput, TOutput>, options?: UseActionOptions<TOutput>) => {
     const [data, setData] = useState<any>();
     const [errors, setErrors] = useState<any>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -17,18 +17,19 @@ export const useAction = <TInput, TOutput>(action: Action<TInput, TOutput>, opti
         async (input: TInput) => {
             try {
                 setIsLoading(true);
+
                 const response = await action(input);
 
                 if (!response) {
                     throw new Error("Cannot complete request");
                 }
-
                 setData(response);
             } catch (error) {
                 setErrors(error);
                 setIsLoading(false);
             } finally {
-                setIsLoading(true);
+                setIsLoading(false);
+                options?.onComplete?.();
             }
         },
         [action]
