@@ -1,30 +1,36 @@
+import ListContainer from "./_components/list-container";
+
 import { db } from "@/lib/db";
-import Link from "next/link";
-import BoardOptions from "./_components/options-dropdown";
-import Lists from "./_components/lists";
+import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 async function BoardPage({ params }: { params: { id: string } }) {
-    const board = await db.board.findFirst({ where: { id: params.id } });
+    const { orgId } = auth();
 
-    return (
-        <div style={{ backgroundImage: `url(${board?.imageFullUrl})` }} className="w-full h-screen bg-cover">
-            <div className="w-full bg-black/30 py-4 text-white px-10 2xl:px-0">
-                <div className="max-w-screen-2xl flex items-center justify-between mx-auto">
-                    <h1 className="font-semibold text-3xl">{board?.title}</h1>
-                    <BoardOptions boardId={params.id} />
-                </div>
-            </div>
+    if (!orgId) {
+        redirect(`organizations/${orgId}`);
+    }
 
-            <Lists boardId={params.id} />
+    const lists = await db.list.findMany({
+        where: {
+            boardId: params.id,
+            board: {
+                orgId,
+            },
+        },
+        include: {
+            cards: {
+                orderBy: {
+                    order: "asc",
+                },
+            },
+        },
+        orderBy: {
+            order: "asc",
+        },
+    });
 
-            <Link
-                href={board?.imageLinkHTML!}
-                className="absolute bottom-0 font-semibold left-2 hover:underline text-neutral-800 text-sm"
-            >
-                Photo by: {board?.imageUsername}
-            </Link>
-        </div>
-    );
+    return <ListContainer data={lists} boardId={params.id} />;
 }
 
 export default BoardPage;

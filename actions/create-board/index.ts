@@ -32,9 +32,8 @@ export const createBoard = async (data: any): Promise<any> => {
                 imageUsername,
             },
         });
-
-        revalidatePath(`/organizations/${orgId}`);
     } catch (error) {
         console.error(error);
     }
+    revalidatePath(`/organizations/${orgId}`);
 };

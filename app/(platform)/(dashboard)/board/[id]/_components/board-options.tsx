@@ -1,4 +1,6 @@
 "use client";
+import { useParams } from "next/navigation";
+
 import { useAction } from "@/hooks/use-action";
 import { deleteBoard } from "@/actions/delete-board";
 
@@ -11,14 +13,12 @@ import {
 
 import { MoreHorizontal, Trash } from "lucide-react";
 
-interface BoardOptionsProps {
-    boardId: string;
-}
+const BoardOptions = () => {
+    const { id }: { id: string } = useParams();
 
-const BoardOptions = ({ boardId }: BoardOptionsProps) => {
     const { execute } = useAction(deleteBoard);
 
-    const onDelete = () => execute(boardId);
+    const onDelete = () => execute(id);
 
     return (
         <DropdownMenu>
@@ -27,8 +27,8 @@ const BoardOptions = ({ boardId }: BoardOptionsProps) => {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
-                <DropdownMenuItem onClick={onDelete}>
-                    <Trash className="mr-2" />
+                <DropdownMenuItem className="cursor-pointer" onClick={onDelete}>
+                    <Trash size={16} className="mr-2" />
                     Delete board
                 </DropdownMenuItem>
             </DropdownMenuContent>

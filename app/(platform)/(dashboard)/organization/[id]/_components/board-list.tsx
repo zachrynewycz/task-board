@@ -37,7 +37,7 @@ const BoardList = async () => {
                 ))}
 
                 <CreateBoardPopover side="right">
-                    <div className="bg-neutral-200 rounded-md text-center h-32 font-medium text-neutral-800 flex items-center justify-center cursor-pointer hover:bg-neutral-300 ease-in duration-100">
+                    <div className="bg-neutral-200 rounded-md aspect-video text-center h-full font-medium text-neutral-800 flex items-center justify-center cursor-pointer hover:bg-neutral-300 ease-in duration-100">
                         Create new board
                         <br />
                         {remaining} remaining
