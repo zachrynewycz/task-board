@@ -3,6 +3,8 @@
 import ListItem from "./list-item";
 import CreateListForm from "./list-form";
 
+import { useEffect, useState } from "react";
+
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 
 import { List } from "@/types/types";
@@ -13,7 +15,45 @@ interface ListContainerProps {
 }
 
 const ListContainer = ({ data, boardId }: ListContainerProps) => {
-    const onDragEnd = () => {};
+    const [orderedData, setOrderedData] = useState<List[]>([]);
+
+    useEffect(() => {
+        setOrderedData(data);
+    }, [data]);
+
+    const onDragEnd = (event: any) => {
+        const { destination, source, type } = event;
+
+        if (!destination) return;
+
+        if (destination.droppableId === source.droppableId && destination.index === source.index) {
+            return;
+        }
+
+        if (type === "list") {
+            const newOrderedData = orderedData;
+
+            const items = newOrderedData.splice(source.index, 1); // Remove list from array
+            newOrderedData.splice(destination.index, 0, ...items); //Add it based on new index
+
+            const updatedOrderedData = newOrderedData.map((list, index) => ({ ...list, order: index }));
+            setOrderedData(updatedOrderedData);
+        }
+
+        if (type === "card") {
+            const newOrderedData = orderedData;
+
+            const sourceList = newOrderedData.find((list) => list.id === source.droppableId);
+            const destinationList = newOrderedData.find((list) => list.id === destination.droppableId);
+
+            if (!destinationList || !sourceList) return;
+
+            const items = sourceList.cards.splice(source.index, 1); // Remove the item from the source list
+            destinationList.cards.splice(destination.index, 0, ...items); // Insert the item into the destination list
+
+            setOrderedData(newOrderedData);
+        }
+    };
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
@@ -21,13 +61,14 @@ const ListContainer = ({ data, boardId }: ListContainerProps) => {
                 {(provided) => (
                     <ol
                         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 max-w-screen-2xl mx-auto mt-6 gap-4 px-10 2xl:px-0"
-                        {...provided.droppableProps}
                         ref={provided.innerRef}
+                        {...provided.droppableProps}
                     >
-                        {data.map((list, index) => (
+                        {orderedData.map((list, index) => (
                             <ListItem key={list.id} index={index} data={list} />
                         ))}
 
+                        {provided.placeholder}
                         <CreateListForm />
                     </ol>
                 )}

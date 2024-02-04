@@ -1,3 +1,8 @@
+import { useAction } from "@/hooks/use-action";
+import { deleteList } from "@/actions/delete-list";
+
+import { List } from "@/types/types";
+
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -7,10 +12,12 @@ import {
 
 import { MoreHorizontal } from "lucide-react";
 
-const ListHeader = ({ title }: { title: string }) => {
+const ListHeader = ({ data }: { data: List }) => {
+    const { execute } = useAction(deleteList);
+
     return (
         <div className="font-semibold px-3 mb-3 flex items-center justify-between">
-            <h1>{title}</h1>
+            <h1>{data.title}</h1>
 
             <DropdownMenu>
                 <DropdownMenuTrigger>
@@ -18,7 +25,7 @@ const ListHeader = ({ title }: { title: string }) => {
                 </DropdownMenuTrigger>
 
                 <DropdownMenuContent>
-                    <DropdownMenuItem>Delete list</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => execute(data)}>Delete list</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
         </div>
