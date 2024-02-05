@@ -4,6 +4,7 @@ export type List = {
     order: number;
     boardId: string;
     cards: Card[];
+    createdAt?: Date;
 };
 
 export type Card = {
@@ -12,5 +13,5 @@ export type Card = {
     description: string;
     order: number;
     listId: string;
-    createdAt: string;
+    createdAt?: Date;
 };

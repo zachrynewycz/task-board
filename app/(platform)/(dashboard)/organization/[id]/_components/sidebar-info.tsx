@@ -24,8 +24,8 @@ const SidebarInfo = () => {
                 src={organization?.imageUrl!}
                 alt="organization-image"
                 className="rounded-lg"
-                width={55}
-                height={55}
+                width={50}
+                height={50}
                 priority
             />
             <h1 className="font-bold text-xl mb-2">{organization?.name}</h1>

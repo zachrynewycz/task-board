@@ -1,15 +1,16 @@
 "use client";
+
 import FormInput from "./form-input";
 import FormSubmit from "./form-submit";
 import FormImagePicker from "./form-image-picker";
+
+import { useAction } from "@/hooks/use-action";
+import { createBoard } from "@/actions/create-board";
 
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { PopoverClose } from "@radix-ui/react-popover";
 
 import { X } from "lucide-react";
-
-import { useAction } from "@/hooks/use-action";
-import { createBoard } from "@/actions/create-board";
 
 interface FormPopoverProps {
     children: React.ReactNode;
@@ -17,10 +18,7 @@ interface FormPopoverProps {
 }
 
 const CreateBoardPopover = ({ children, side }: FormPopoverProps) => {
-    const { execute } = useAction(createBoard, {
-        onSuccess: () => {},
-        onError: (error) => {},
-    });
+    const { execute } = useAction(createBoard);
 
     const onSubmit = (formData: FormData) => {
         const title = formData.get("title") as string;

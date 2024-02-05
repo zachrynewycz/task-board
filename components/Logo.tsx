@@ -7,7 +7,7 @@ const h1Font = localFont({
 
 const Logo = () => {
     return (
-        <div className="flex items-center">
+        <div className="hidden sm:flex items-center">
             <img className="w-5 mr-2" src="/Logo.png" alt="logo" />
             <h1 className={cn("text-neutral-700 text-lg mt-1", h1Font.className)}>Task Board</h1>
         </div>

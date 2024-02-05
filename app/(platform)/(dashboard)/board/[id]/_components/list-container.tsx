@@ -5,6 +5,10 @@ import CreateListForm from "./list-form";
 
 import { useEffect, useState } from "react";
 
+import { useAction } from "@/hooks/use-action";
+import { updateCardOrder } from "@/actions/update-card-order";
+import { updateListOrder } from "@/actions/update-list-order";
+
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 
 import { List } from "@/types/types";
@@ -16,6 +20,9 @@ interface ListContainerProps {
 
 const ListContainer = ({ data, boardId }: ListContainerProps) => {
     const [orderedData, setOrderedData] = useState<List[]>([]);
+
+    const { execute: executeUpdateListOrder } = useAction(updateListOrder);
+    const { execute: executeUpdateCardOrder } = useAction(updateCardOrder);
 
     useEffect(() => {
         setOrderedData(data);
@@ -37,6 +44,8 @@ const ListContainer = ({ data, boardId }: ListContainerProps) => {
             newOrderedData.splice(destination.index, 0, ...items); //Add it based on new index
 
             const updatedOrderedData = newOrderedData.map((list, index) => ({ ...list, order: index }));
+
+            executeUpdateListOrder({ boardId, lists: updatedOrderedData });
             setOrderedData(updatedOrderedData);
         }
 
@@ -51,6 +60,14 @@ const ListContainer = ({ data, boardId }: ListContainerProps) => {
             const items = sourceList.cards.splice(source.index, 1); // Remove the item from the source list
             destinationList.cards.splice(destination.index, 0, ...items); // Insert the item into the destination list
 
+            destinationList.cards = destinationList.cards.map((card, index) => {
+                return { ...card, listId: destinationList.id, order: index };
+            });
+
+            executeUpdateCardOrder({
+                boardId,
+                cards: destinationList.cards,
+            });
             setOrderedData(newOrderedData);
         }
     };
@@ -60,7 +77,7 @@ const ListContainer = ({ data, boardId }: ListContainerProps) => {
             <Droppable droppableId="lists" type="list" direction="horizontal">
                 {(provided) => (
                     <ol
-                        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 max-w-screen-2xl mx-auto mt-6 gap-4 px-10 2xl:px-0"
+                        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 max-w-screen-2xl mx-auto mt-6 gap-4 px-10 2xl:px-0"
                         ref={provided.innerRef}
                         {...provided.droppableProps}
                     >

@@ -1,3 +1,4 @@
+import BoardListHeader from "./_components/board-list-header";
 import Sidebar from "./_components/sidebar";
 
 function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -7,7 +8,10 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
                 <div className="w-64 shrink-0 hidden md:block">
                     <Sidebar />
                 </div>
-                <div className="w-full">{children}</div>
+                <div className="w-full">
+                    <BoardListHeader />
+                    {children}
+                </div>
             </div>
         </main>
     );

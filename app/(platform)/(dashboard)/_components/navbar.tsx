@@ -1,10 +1,10 @@
-import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
-
-import { Button } from "@/components/ui/button";
 import Logo from "@/components/Logo";
 import CreateBoardPopover from "@/components/forms/create-board-popover";
 
-async function Navbar() {
+import { Button } from "@/components/ui/button";
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
+
+function Navbar() {
     return (
         <nav className="bg-white py-3 shadow-sm px-10 2xl:px-0">
             <div className="flex justify-between items-center md:mx-auto mx-0 max-w-screen-2xl">
