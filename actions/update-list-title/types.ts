@@ -1,4 +1,5 @@
 export type InputType = {
+    listId: string;
     title: string;
-    id: string;
+    boardId: string;
 };

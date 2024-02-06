@@ -1,13 +1,19 @@
-import { Separator } from "@/components/ui/separator";
-import SidebarInfo from "./sidebar-info";
-import SidebarOptions from "./sidebar-options";
+import Link from "next/link";
+import OrgList from "./org-list";
+import { Plus } from "lucide-react";
 
 const Sidebar = () => {
     return (
         <>
-            <SidebarInfo />
-            <Separator className="my-4" />
-            <SidebarOptions />
+            <div className="flex justify-between items-center">
+                <span className="font-semibold">Workspaces</span>
+
+                <Link href="/select-org">
+                    <Plus size={20} />
+                </Link>
+            </div>
+
+            <OrgList />
         </>
     );
 };
