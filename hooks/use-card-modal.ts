@@ -1,13 +1,15 @@
 import { create } from "zustand";
 
-interface ModalState {
+type CardModalStore = {
+    id?: string;
     isOpen: boolean;
-    openCardModal: () => void;
-    closeCardModal: () => void;
-}
+    onOpen: (id: string) => void;
+    onClose: () => void;
+};
 
-export const useCardModal = create<ModalState>((set) => ({
+export const useCardModal = create<CardModalStore>((set) => ({
+    id: undefined,
     isOpen: false,
-    openCardModal: () => set({ isOpen: true }),
-    closeCardModal: () => set({ isOpen: false }),
+    onOpen: (id: string) => set({ isOpen: true, id }),
+    onClose: () => set({ isOpen: false, id: undefined }),
 }));

@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 
 export const createCard = async (data: InputType): Promise<any> => {
     const { orgId, userId } = auth();
-    console.log(data);
+
     if (!orgId || !userId) {
         return { error: "Unathorized" };
     }

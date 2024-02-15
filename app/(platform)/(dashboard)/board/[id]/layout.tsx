@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import Navbar from "../../_components/navbar";
 import BoardHeader from "./_components/board-header";
+import CardModal from "@/components/modals";
 
 interface LayoutProps {
     children: React.ReactNode;

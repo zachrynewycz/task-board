@@ -2,6 +2,7 @@
 
 import ListItem from "./list-item";
 import CreateListForm from "./list-form";
+import CardModal from "@/components/modals";
 
 import { useEffect, useState } from "react";
 

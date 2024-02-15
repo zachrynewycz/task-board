@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Activity, PanelsLeftBottom, Settings } from "lucide-react";
+import { PanelsLeftBottom, Settings } from "lucide-react";
 
 const OrgItem = ({ org }: { org: any }) => {
     const { organization: activeOrganization } = useOrganization();
@@ -20,16 +20,16 @@ const OrgItem = ({ org }: { org: any }) => {
     if (!activeOrganization) return null;
     if (!isLoaded) return <p>Loading...</p>;
 
+    // {
+    //     label: "Activity",
+    //     icon: <Activity />,
+    //     href: `/organization/${org.id}/activity`,
+    // },
     const routes = [
         {
             label: "Boards",
             icon: <PanelsLeftBottom />,
             href: `/organization/${org.id}`,
-        },
-        {
-            label: "Activity",
-            icon: <Activity />,
-            href: `/organization/${org.id}/activity`,
         },
         {
             label: "Settings",

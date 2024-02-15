@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
+import { QueryProvider } from "@/components/providers/query-provider";
+import CardModal from "@/components/modals";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,13 +19,18 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <ClerkProvider>
-            <html lang="en">
-                <head>
-                    <link rel="icon" href="/Logo.png" />
-                </head>
-                <body className={inter.className}>{children}</body>
-            </html>
-        </ClerkProvider>
+        <QueryProvider>
+            <ClerkProvider>
+                <html lang="en">
+                    <head>
+                        <link rel="icon" href="/Logo.png" />
+                    </head>
+                    <body className={inter.className}>
+                        <CardModal />
+                        {children}
+                    </body>
+                </html>
+            </ClerkProvider>
+        </QueryProvider>
     );
 }
