@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Task Board
 
-First, run the development server:
+Developed a clone of Trello. Featuring realtime collaboration within organziations. Utilizes drag and drop components that tells you what's being worked on, who's working on what, and where something is in a process.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+### Tech Used
 
-To learn more about Next.js, take a look at the following resources:
+**App:** Next.js, Tailwindcss, Zustand, Clerk, Supabase, Prisma, Shadcn/ui
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Libraries:** Lucide React, @hello-pangea/dnd, unsplash-js, 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Screenshots
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![1](https://github.com/zachrynewycz/task-board/assets/85086293/bebce4d7-23bc-4431-8d39-03ea686e45cf)
+![2](https://github.com/zachrynewycz/task-board/assets/85086293/6a440c1e-de31-431b-98d5-75b12e6d1257)
+![3](https://github.com/zachrynewycz/task-board/assets/85086293/470b807d-09f9-4d05-9e4d-e3b9f4d88d9e)
+![4](https://github.com/zachrynewycz/task-board/assets/85086293/49995ffa-7ca1-454e-ab1d-889e04220df1)
+![5](https://github.com/zachrynewycz/task-board/assets/85086293/d299a38d-da36-4b4b-a200-f6e0de5212a6)
+![6](https://github.com/zachrynewycz/task-board/assets/85086293/a52113f9-d2fc-48ce-8ac4-9156a3a35834)
+
+
