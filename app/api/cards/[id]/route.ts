@@ -11,6 +11,8 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
             return new NextResponse("Unauthorized", { status: 401 });
         }
 
+        if (!params.id) return;
+
         const card = await db.card.findUnique({
             where: {
                 id: params.id,
