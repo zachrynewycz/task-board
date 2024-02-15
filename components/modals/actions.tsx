@@ -16,12 +16,8 @@ export const Actions = ({ data }: any) => {
     const cardModal = useCardModal();
 
     const { execute: executeCopyCard, isLoading: isLoadingCopy } = useAction(copyCard, {
-        onSuccess: (data) => {
-            cardModal.onClose();
-        },
-        onError: (error) => {
-            console.error(error);
-        },
+        onSuccess: (data) => cardModal.onClose(),
+        onError: (error) => console.error(error),
     });
 
     const { execute: executeDeleteCard, isLoading: isLoadingDelete } = useAction(deleteCard, {

@@ -43,7 +43,7 @@ export const Description = ({ data }: any) => {
     useOnClickOutside(formRef, disableEditing);
 
     const { execute } = useAction(updateCard, {
-        onSuccess: (data) => {
+        onSuccess: (data: any) => {
             queryClient.invalidateQueries({
                 queryKey: ["card", data.id],
             });

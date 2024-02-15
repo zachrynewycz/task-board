@@ -15,7 +15,7 @@ export const Header = ({ data }: any) => {
     const params = useParams();
 
     const { execute } = useAction(updateCard, {
-        onSuccess: (data) => {
+        onSuccess: (data: any) => {
             queryClient.invalidateQueries({
                 queryKey: ["card", data.id],
             });
